@@ -1,25 +1,28 @@
 <script  lang="ts">
 	import { ResponsiveGrid, SidebarNav } from 'rush-component-lib';
-	import { Color, AnimationSettings, GridPlacementSettings, ColorSettings } from 'rush-component-lib';
-	import type { SidebarStyles } from 'rush-component-lib';
-	import { LinkSettings } from 'rush-component-lib';
-	import { ButtonSettings } from 'rush-component-lib';
+	import { Color } from 'rush-component-lib';
+	import "$lib/fonts/printvetica.css";
+	import { Motion, Unit } from 'rush-component-lib';
+	import { PlacementMode } from 'rush-component-lib';
 
-	let isGrid = true;
-	let a = new AnimationSettings(0.3);
-	let g = new GridPlacementSettings(1, 5, 1, 1);
-	let c = new ColorSettings(Color.Rush_Black, Color.Rush_White);
-	let l = new LinkSettings(12, Color.Rush_Grey, 10, Color.Rush_Link);
-	let b = new ButtonSettings(Color.Rush_Orange, 40, 20, 16);
+	let a = {scrollVelocity: 1, animationType: Motion.EASE_OUT}
+	let g = {row: [1, 5], col:  [1, 1]}
+	let c = {backgroundColor: Color.Rush_Orange, foregroundColor: Color.Rush_Grey};
 
-	let s: SidebarStyles = {
-		grid: isGrid,
-		animationSettings: a,
-		gridPlacementSettings: g,
-		colorSettings: c,
-		linkSettings: l,
-		buttonSettings: b
-	}
+	let sF = {ftMagnitude: 20, ftUnit: Unit.PX, ftFamily: "arial"}
+	let sIF = {ftMagnitude: 15, ftUnit: Unit.PX, ftFamily: "arial"}
+	let sIC = {backgroundColor: Color.Rush_Black, foregroundColor: Color.Rush_Teal, lnkColor: Color.Rush_Black, lnkHoverColor: Color.Rush_Teal};
+	let sIB = {paddingMagnitude: 0, unit: Unit.PX};
+	let sI = [{height: {magnitude: 20, unit: Unit.PX}, width: {magnitude: 20, unit: Unit.PX}, alt: 'profile', src: 'src/lib/icons/man.png',title: 'My Profile'},
+						{height: 20, width: 20, alt: 'settings', src: '/icons/settings.png',title: 'Settings'},
+						{height: 20, width: 20, alt: 'logout', src: '/icons/logout.png',title: 'Logout'}]
+
+	let sBW = {magnitude: 50, unit: Unit.PX};
+	let sBH = {magnitude: 50, unit: Unit.PX};
+	let sBC = {backgroundColor: Color.Rush_Orange, foregroundColor: Color.Rush_Grey};
+
+
+
 </script>
 <style>
 		:global(body) {
@@ -29,9 +32,13 @@
 		}
 </style>
 
-<ResponsiveGrid numRows = {4} numCols = {3} >
+<ResponsiveGrid numRows = {4} numCols = {3} placementMode = {PlacementMode.EVENLY_SPACED} gridBgColor = {Color.Rush_Grey} >
 	<div slot='component' style="display: contents">
-		<SidebarNav settings = {s} grid>
+		<SidebarNav gridPlacement = {g} animationSettings = {a} colorSettings = {c}
+								sidebarFtSettings = {sF} sidebarItemFtSettings = {sIF}
+								sidebarItemColorSettings = {sIC} sidebarItemBoxModelSettings = {sIB}
+								sidebarItems = {sI} buttonWidth = {sBW} buttonHeight = {sBH}
+								buttonColorSettings = {sBC} >
 
 	</SidebarNav></div>
 
