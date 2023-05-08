@@ -1,9 +1,10 @@
 <script  lang="ts">
-	import { ResponsiveGrid, SidebarNav } from 'rush-component-lib';
+	import { ResponsiveGrid, SidebarNav, HeaderNav, ContentArea } from 'rush-component-lib';
 	import { Color } from 'rush-component-lib';
 	import "$lib/fonts/printvetica.css";
 	import { Motion, Unit } from 'rush-component-lib';
 	import { PlacementMode } from 'rush-component-lib';
+
 
 	let a = {scrollVelocity: 1, animationType: Motion.EASE_OUT}
 	let g = {row: [1, 5], col:  [1, 1]}
@@ -20,6 +21,8 @@
 	let sBW = {magnitude: 50, unit: Unit.PX};
 	let sBH = {magnitude: 50, unit: Unit.PX};
 	let sBC = {backgroundColor: Color.Rush_Orange, foregroundColor: Color.Rush_Grey};
+
+	let hI = [{title: 'Optimizer', path: '/optimizer'}, {title: 'Team', path: '/team'}, {title: 'Tasks', path: '/tasks'}];
 
 
 
@@ -41,5 +44,10 @@
 								buttonColorSettings = {sBC} >
 
 	</SidebarNav></div>
-
+	<div slot='component2' style="display: contents">
+		<HeaderNav items = {hI} >
+		</HeaderNav>
+	</div>
+	<div slot='component3' style="display: contents">
+		<ContentArea/></div>
 </ResponsiveGrid>
